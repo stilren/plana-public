@@ -1,0 +1,17 @@
+// const fragment = gql`
+//   fragment myChore on Chore {
+//     name
+//     effortRatings {
+//       effort
+//     }
+//   }
+// `;
+// const todo = this.props.client.readFragment({
+//   fragment,
+//   id: "Chore:cjvqeowd600na0715tudr3yfl"
+// });
+// const data = { ...todo, name: "Hej!" };
+// this.props.client.writeData({
+//   id: "Chore:cjvqeowd600na0715tudr3yfl",
+//   data
+// });

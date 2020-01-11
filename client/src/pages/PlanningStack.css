@@ -1,0 +1,5 @@
+.tabButtons {
+  justify-content: space-evenly;
+  height: 56px;
+  display: flex;
+}

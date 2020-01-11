@@ -1,0 +1,137 @@
+# import ChoreSubscriptionPayload from "./generated/prisma.graphql"
+
+type Mutation {
+  createHousehold(name: String!): Household!
+  createChore(input: ChoreInput): Chore!
+  createEffortRating(userId: ID, effort: Int!, choreId: ID!): Chore!
+  createUser(name: String!, email: String!): User
+  selectHousehold(householdId: String!): User!
+  authenticate(idToken: String): User!
+  updateChoreUpnextState(choreId: String!, isUpnext: Boolean!): Chore!
+  assignChores(choresIds: [String!]!): [Chore!]!
+  startTodo(choreIds: [String!]!): Boolean
+  setTodoState(choreId: ID!, state: TodoState!): Chore!
+  updateChore(choreId: ID!, input: ChoreInput!): Chore!
+  lockChoreToUser(input: LockedToUserInput!): Chore!
+  moveChoresFromTodoToUpnext(householdId: ID): [Chore!]! #Will return upnext chores
+  setTodoStateBatch(choreIds: [ID!]!, state: TodoState!): [Chore!]!
+  createInvite(email: String!, householdId: String): User! #Will return current user
+  addUserToHousehold(householdId: String!): User! #Will return current user
+  deleteInvite(email: String!, householdId: String): User #Will return current user
+}
+
+type Subscription {
+  choreChanges(filter: ChoreFilter): ChoreSubscriptionPayload!
+}
+
+type Query {
+  chore(id: ID!): Chore
+  household(id: ID!): Household
+  user(id: ID!): User
+  userByEmail(email: String!): User
+  me: User!
+  chores(filter: ChoreFilter): [Chore!]!
+  unvotedChores(filter: ChoreFilter): [Chore!]!
+  myUnvotedChores: [Chore]!
+  selectedHousehold: Household
+}
+
+input ChoreFilter {
+  households: [ID]
+  status: [ChoreStatus]
+}
+
+enum ChoreStatus {
+  UPNEXT
+  ARCHIVE
+  RECURRING
+  TODO
+  DONE
+}
+
+input ChoreInput {
+  name: String!
+  description: String
+  isUpnext: Boolean!
+  todoState: TodoState
+  assignee: ID
+  recurrenceType: RecurrenceType!
+  recurrenceInput: AutomaticRecurrenceInput
+  lockedToUser: LockedToUserInput #null will leave it as is
+  effort: EffortInput #null will leave it as is
+}
+
+input EffortInput {
+  userId: ID!
+  effort: Int!
+  effortId: ID
+}
+
+input LockedToUserInput {
+  userId: ID!
+  locked: Boolean!
+  choreId: ID!
+}
+
+input AutomaticRecurrenceInput {
+  nextOccurence: DateTime
+  weekCadence: Int
+}
+
+type User {
+  id: ID!
+  googleId: String
+  email: String
+  name: String!
+  households: [Household!]!
+  chores: [Chore!]!
+  selectedHousehold: Household
+  givenName: String
+  familyName: String
+  lockedChores: [Chore]
+  invites: [Household]
+}
+
+type Household {
+  id: ID!
+  name: String!
+  members: [User!]!
+  chores(filter: [ChoreStatus]): [Chore!]!
+  invites: [User]
+}
+
+type Chore {
+  id: ID!
+  name: String!
+  description: String
+  effortRatings: [EffortRating!]!
+  household: Household!
+  assignee: User
+  todoState: TodoState!
+  dummy: String
+  isUpnext: Boolean!
+  recurrenceType: RecurrenceType!
+  recurringNextOccurence: DateTime
+  recurringLastOccurence: DateTime
+  recurringWeekCadence: Int
+  lockedToUser: User
+}
+
+type EffortRating {
+  id: ID!
+  user: User!
+  effort: Int!
+  chore: Chore!
+}
+
+enum RecurrenceType {
+  AUTOMATIC
+  MANUAL
+  ONCE
+}
+
+enum TodoState {
+  TODO
+  DONE
+  NOT_IN_TODO
+}

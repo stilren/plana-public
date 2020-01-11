@@ -1,0 +1,1842 @@
+type AggregateChore {
+  count: Int!
+}
+
+type AggregateEffortRating {
+  count: Int!
+}
+
+type AggregateHousehold {
+  count: Int!
+}
+
+type AggregateUser {
+  count: Int!
+}
+
+type BatchPayload {
+  count: Long!
+}
+
+type Chore {
+  id: ID!
+  name: String!
+  description: String
+  effortRatings(where: EffortRatingWhereInput, orderBy: EffortRatingOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [EffortRating!]
+  household: Household!
+  assignee: User
+  lockedToUser: User
+  todoState: TodoState!
+  dummy: String
+  isUpnext: Boolean!
+  recurrenceType: RecurrenceType!
+  recurringNextOccurence: DateTime
+  recurringLastOccurence: DateTime
+  recurringWeekCadence: Int
+  updatedAt: DateTime!
+  createdAt: DateTime!
+}
+
+type ChoreConnection {
+  pageInfo: PageInfo!
+  edges: [ChoreEdge]!
+  aggregate: AggregateChore!
+}
+
+input ChoreCreateInput {
+  id: ID
+  name: String!
+  description: String
+  effortRatings: EffortRatingCreateManyWithoutChoreInput
+  household: HouseholdCreateOneWithoutChoresInput!
+  assignee: UserCreateOneWithoutChoresInput
+  lockedToUser: UserCreateOneWithoutLockedChoresInput
+  todoState: TodoState!
+  dummy: String
+  isUpnext: Boolean!
+  recurrenceType: RecurrenceType!
+  recurringNextOccurence: DateTime
+  recurringLastOccurence: DateTime
+  recurringWeekCadence: Int
+}
+
+input ChoreCreateManyWithoutAssigneeInput {
+  create: [ChoreCreateWithoutAssigneeInput!]
+  connect: [ChoreWhereUniqueInput!]
+}
+
+input ChoreCreateManyWithoutHouseholdInput {
+  create: [ChoreCreateWithoutHouseholdInput!]
+  connect: [ChoreWhereUniqueInput!]
+}
+
+input ChoreCreateManyWithoutLockedToUserInput {
+  create: [ChoreCreateWithoutLockedToUserInput!]
+  connect: [ChoreWhereUniqueInput!]
+}
+
+input ChoreCreateOneWithoutEffortRatingsInput {
+  create: ChoreCreateWithoutEffortRatingsInput
+  connect: ChoreWhereUniqueInput
+}
+
+input ChoreCreateWithoutAssigneeInput {
+  id: ID
+  name: String!
+  description: String
+  effortRatings: EffortRatingCreateManyWithoutChoreInput
+  household: HouseholdCreateOneWithoutChoresInput!
+  lockedToUser: UserCreateOneWithoutLockedChoresInput
+  todoState: TodoState!
+  dummy: String
+  isUpnext: Boolean!
+  recurrenceType: RecurrenceType!
+  recurringNextOccurence: DateTime
+  recurringLastOccurence: DateTime
+  recurringWeekCadence: Int
+}
+
+input ChoreCreateWithoutEffortRatingsInput {
+  id: ID
+  name: String!
+  description: String
+  household: HouseholdCreateOneWithoutChoresInput!
+  assignee: UserCreateOneWithoutChoresInput
+  lockedToUser: UserCreateOneWithoutLockedChoresInput
+  todoState: TodoState!
+  dummy: String
+  isUpnext: Boolean!
+  recurrenceType: RecurrenceType!
+  recurringNextOccurence: DateTime
+  recurringLastOccurence: DateTime
+  recurringWeekCadence: Int
+}
+
+input ChoreCreateWithoutHouseholdInput {
+  id: ID
+  name: String!
+  description: String
+  effortRatings: EffortRatingCreateManyWithoutChoreInput
+  assignee: UserCreateOneWithoutChoresInput
+  lockedToUser: UserCreateOneWithoutLockedChoresInput
+  todoState: TodoState!
+  dummy: String
+  isUpnext: Boolean!
+  recurrenceType: RecurrenceType!
+  recurringNextOccurence: DateTime
+  recurringLastOccurence: DateTime
+  recurringWeekCadence: Int
+}
+
+input ChoreCreateWithoutLockedToUserInput {
+  id: ID
+  name: String!
+  description: String
+  effortRatings: EffortRatingCreateManyWithoutChoreInput
+  household: HouseholdCreateOneWithoutChoresInput!
+  assignee: UserCreateOneWithoutChoresInput
+  todoState: TodoState!
+  dummy: String
+  isUpnext: Boolean!
+  recurrenceType: RecurrenceType!
+  recurringNextOccurence: DateTime
+  recurringLastOccurence: DateTime
+  recurringWeekCadence: Int
+}
+
+type ChoreEdge {
+  node: Chore!
+  cursor: String!
+}
+
+enum ChoreOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  description_ASC
+  description_DESC
+  todoState_ASC
+  todoState_DESC
+  dummy_ASC
+  dummy_DESC
+  isUpnext_ASC
+  isUpnext_DESC
+  recurrenceType_ASC
+  recurrenceType_DESC
+  recurringNextOccurence_ASC
+  recurringNextOccurence_DESC
+  recurringLastOccurence_ASC
+  recurringLastOccurence_DESC
+  recurringWeekCadence_ASC
+  recurringWeekCadence_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type ChorePreviousValues {
+  id: ID!
+  name: String!
+  description: String
+  todoState: TodoState!
+  dummy: String
+  isUpnext: Boolean!
+  recurrenceType: RecurrenceType!
+  recurringNextOccurence: DateTime
+  recurringLastOccurence: DateTime
+  recurringWeekCadence: Int
+  updatedAt: DateTime!
+  createdAt: DateTime!
+}
+
+input ChoreScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  todoState: TodoState
+  todoState_not: TodoState
+  todoState_in: [TodoState!]
+  todoState_not_in: [TodoState!]
+  dummy: String
+  dummy_not: String
+  dummy_in: [String!]
+  dummy_not_in: [String!]
+  dummy_lt: String
+  dummy_lte: String
+  dummy_gt: String
+  dummy_gte: String
+  dummy_contains: String
+  dummy_not_contains: String
+  dummy_starts_with: String
+  dummy_not_starts_with: String
+  dummy_ends_with: String
+  dummy_not_ends_with: String
+  isUpnext: Boolean
+  isUpnext_not: Boolean
+  recurrenceType: RecurrenceType
+  recurrenceType_not: RecurrenceType
+  recurrenceType_in: [RecurrenceType!]
+  recurrenceType_not_in: [RecurrenceType!]
+  recurringNextOccurence: DateTime
+  recurringNextOccurence_not: DateTime
+  recurringNextOccurence_in: [DateTime!]
+  recurringNextOccurence_not_in: [DateTime!]
+  recurringNextOccurence_lt: DateTime
+  recurringNextOccurence_lte: DateTime
+  recurringNextOccurence_gt: DateTime
+  recurringNextOccurence_gte: DateTime
+  recurringLastOccurence: DateTime
+  recurringLastOccurence_not: DateTime
+  recurringLastOccurence_in: [DateTime!]
+  recurringLastOccurence_not_in: [DateTime!]
+  recurringLastOccurence_lt: DateTime
+  recurringLastOccurence_lte: DateTime
+  recurringLastOccurence_gt: DateTime
+  recurringLastOccurence_gte: DateTime
+  recurringWeekCadence: Int
+  recurringWeekCadence_not: Int
+  recurringWeekCadence_in: [Int!]
+  recurringWeekCadence_not_in: [Int!]
+  recurringWeekCadence_lt: Int
+  recurringWeekCadence_lte: Int
+  recurringWeekCadence_gt: Int
+  recurringWeekCadence_gte: Int
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  AND: [ChoreScalarWhereInput!]
+  OR: [ChoreScalarWhereInput!]
+  NOT: [ChoreScalarWhereInput!]
+}
+
+type ChoreSubscriptionPayload {
+  mutation: MutationType!
+  node: Chore
+  updatedFields: [String!]
+  previousValues: ChorePreviousValues
+}
+
+input ChoreSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ChoreWhereInput
+  AND: [ChoreSubscriptionWhereInput!]
+  OR: [ChoreSubscriptionWhereInput!]
+  NOT: [ChoreSubscriptionWhereInput!]
+}
+
+input ChoreUpdateInput {
+  name: String
+  description: String
+  effortRatings: EffortRatingUpdateManyWithoutChoreInput
+  household: HouseholdUpdateOneRequiredWithoutChoresInput
+  assignee: UserUpdateOneWithoutChoresInput
+  lockedToUser: UserUpdateOneWithoutLockedChoresInput
+  todoState: TodoState
+  dummy: String
+  isUpnext: Boolean
+  recurrenceType: RecurrenceType
+  recurringNextOccurence: DateTime
+  recurringLastOccurence: DateTime
+  recurringWeekCadence: Int
+}
+
+input ChoreUpdateManyDataInput {
+  name: String
+  description: String
+  todoState: TodoState
+  dummy: String
+  isUpnext: Boolean
+  recurrenceType: RecurrenceType
+  recurringNextOccurence: DateTime
+  recurringLastOccurence: DateTime
+  recurringWeekCadence: Int
+}
+
+input ChoreUpdateManyMutationInput {
+  name: String
+  description: String
+  todoState: TodoState
+  dummy: String
+  isUpnext: Boolean
+  recurrenceType: RecurrenceType
+  recurringNextOccurence: DateTime
+  recurringLastOccurence: DateTime
+  recurringWeekCadence: Int
+}
+
+input ChoreUpdateManyWithoutAssigneeInput {
+  create: [ChoreCreateWithoutAssigneeInput!]
+  delete: [ChoreWhereUniqueInput!]
+  connect: [ChoreWhereUniqueInput!]
+  set: [ChoreWhereUniqueInput!]
+  disconnect: [ChoreWhereUniqueInput!]
+  update: [ChoreUpdateWithWhereUniqueWithoutAssigneeInput!]
+  upsert: [ChoreUpsertWithWhereUniqueWithoutAssigneeInput!]
+  deleteMany: [ChoreScalarWhereInput!]
+  updateMany: [ChoreUpdateManyWithWhereNestedInput!]
+}
+
+input ChoreUpdateManyWithoutHouseholdInput {
+  create: [ChoreCreateWithoutHouseholdInput!]
+  delete: [ChoreWhereUniqueInput!]
+  connect: [ChoreWhereUniqueInput!]
+  set: [ChoreWhereUniqueInput!]
+  disconnect: [ChoreWhereUniqueInput!]
+  update: [ChoreUpdateWithWhereUniqueWithoutHouseholdInput!]
+  upsert: [ChoreUpsertWithWhereUniqueWithoutHouseholdInput!]
+  deleteMany: [ChoreScalarWhereInput!]
+  updateMany: [ChoreUpdateManyWithWhereNestedInput!]
+}
+
+input ChoreUpdateManyWithoutLockedToUserInput {
+  create: [ChoreCreateWithoutLockedToUserInput!]
+  delete: [ChoreWhereUniqueInput!]
+  connect: [ChoreWhereUniqueInput!]
+  set: [ChoreWhereUniqueInput!]
+  disconnect: [ChoreWhereUniqueInput!]
+  update: [ChoreUpdateWithWhereUniqueWithoutLockedToUserInput!]
+  upsert: [ChoreUpsertWithWhereUniqueWithoutLockedToUserInput!]
+  deleteMany: [ChoreScalarWhereInput!]
+  updateMany: [ChoreUpdateManyWithWhereNestedInput!]
+}
+
+input ChoreUpdateManyWithWhereNestedInput {
+  where: ChoreScalarWhereInput!
+  data: ChoreUpdateManyDataInput!
+}
+
+input ChoreUpdateOneRequiredWithoutEffortRatingsInput {
+  create: ChoreCreateWithoutEffortRatingsInput
+  update: ChoreUpdateWithoutEffortRatingsDataInput
+  upsert: ChoreUpsertWithoutEffortRatingsInput
+  connect: ChoreWhereUniqueInput
+}
+
+input ChoreUpdateWithoutAssigneeDataInput {
+  name: String
+  description: String
+  effortRatings: EffortRatingUpdateManyWithoutChoreInput
+  household: HouseholdUpdateOneRequiredWithoutChoresInput
+  lockedToUser: UserUpdateOneWithoutLockedChoresInput
+  todoState: TodoState
+  dummy: String
+  isUpnext: Boolean
+  recurrenceType: RecurrenceType
+  recurringNextOccurence: DateTime
+  recurringLastOccurence: DateTime
+  recurringWeekCadence: Int
+}
+
+input ChoreUpdateWithoutEffortRatingsDataInput {
+  name: String
+  description: String
+  household: HouseholdUpdateOneRequiredWithoutChoresInput
+  assignee: UserUpdateOneWithoutChoresInput
+  lockedToUser: UserUpdateOneWithoutLockedChoresInput
+  todoState: TodoState
+  dummy: String
+  isUpnext: Boolean
+  recurrenceType: RecurrenceType
+  recurringNextOccurence: DateTime
+  recurringLastOccurence: DateTime
+  recurringWeekCadence: Int
+}
+
+input ChoreUpdateWithoutHouseholdDataInput {
+  name: String
+  description: String
+  effortRatings: EffortRatingUpdateManyWithoutChoreInput
+  assignee: UserUpdateOneWithoutChoresInput
+  lockedToUser: UserUpdateOneWithoutLockedChoresInput
+  todoState: TodoState
+  dummy: String
+  isUpnext: Boolean
+  recurrenceType: RecurrenceType
+  recurringNextOccurence: DateTime
+  recurringLastOccurence: DateTime
+  recurringWeekCadence: Int
+}
+
+input ChoreUpdateWithoutLockedToUserDataInput {
+  name: String
+  description: String
+  effortRatings: EffortRatingUpdateManyWithoutChoreInput
+  household: HouseholdUpdateOneRequiredWithoutChoresInput
+  assignee: UserUpdateOneWithoutChoresInput
+  todoState: TodoState
+  dummy: String
+  isUpnext: Boolean
+  recurrenceType: RecurrenceType
+  recurringNextOccurence: DateTime
+  recurringLastOccurence: DateTime
+  recurringWeekCadence: Int
+}
+
+input ChoreUpdateWithWhereUniqueWithoutAssigneeInput {
+  where: ChoreWhereUniqueInput!
+  data: ChoreUpdateWithoutAssigneeDataInput!
+}
+
+input ChoreUpdateWithWhereUniqueWithoutHouseholdInput {
+  where: ChoreWhereUniqueInput!
+  data: ChoreUpdateWithoutHouseholdDataInput!
+}
+
+input ChoreUpdateWithWhereUniqueWithoutLockedToUserInput {
+  where: ChoreWhereUniqueInput!
+  data: ChoreUpdateWithoutLockedToUserDataInput!
+}
+
+input ChoreUpsertWithoutEffortRatingsInput {
+  update: ChoreUpdateWithoutEffortRatingsDataInput!
+  create: ChoreCreateWithoutEffortRatingsInput!
+}
+
+input ChoreUpsertWithWhereUniqueWithoutAssigneeInput {
+  where: ChoreWhereUniqueInput!
+  update: ChoreUpdateWithoutAssigneeDataInput!
+  create: ChoreCreateWithoutAssigneeInput!
+}
+
+input ChoreUpsertWithWhereUniqueWithoutHouseholdInput {
+  where: ChoreWhereUniqueInput!
+  update: ChoreUpdateWithoutHouseholdDataInput!
+  create: ChoreCreateWithoutHouseholdInput!
+}
+
+input ChoreUpsertWithWhereUniqueWithoutLockedToUserInput {
+  where: ChoreWhereUniqueInput!
+  update: ChoreUpdateWithoutLockedToUserDataInput!
+  create: ChoreCreateWithoutLockedToUserInput!
+}
+
+input ChoreWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  effortRatings_every: EffortRatingWhereInput
+  effortRatings_some: EffortRatingWhereInput
+  effortRatings_none: EffortRatingWhereInput
+  household: HouseholdWhereInput
+  assignee: UserWhereInput
+  lockedToUser: UserWhereInput
+  todoState: TodoState
+  todoState_not: TodoState
+  todoState_in: [TodoState!]
+  todoState_not_in: [TodoState!]
+  dummy: String
+  dummy_not: String
+  dummy_in: [String!]
+  dummy_not_in: [String!]
+  dummy_lt: String
+  dummy_lte: String
+  dummy_gt: String
+  dummy_gte: String
+  dummy_contains: String
+  dummy_not_contains: String
+  dummy_starts_with: String
+  dummy_not_starts_with: String
+  dummy_ends_with: String
+  dummy_not_ends_with: String
+  isUpnext: Boolean
+  isUpnext_not: Boolean
+  recurrenceType: RecurrenceType
+  recurrenceType_not: RecurrenceType
+  recurrenceType_in: [RecurrenceType!]
+  recurrenceType_not_in: [RecurrenceType!]
+  recurringNextOccurence: DateTime
+  recurringNextOccurence_not: DateTime
+  recurringNextOccurence_in: [DateTime!]
+  recurringNextOccurence_not_in: [DateTime!]
+  recurringNextOccurence_lt: DateTime
+  recurringNextOccurence_lte: DateTime
+  recurringNextOccurence_gt: DateTime
+  recurringNextOccurence_gte: DateTime
+  recurringLastOccurence: DateTime
+  recurringLastOccurence_not: DateTime
+  recurringLastOccurence_in: [DateTime!]
+  recurringLastOccurence_not_in: [DateTime!]
+  recurringLastOccurence_lt: DateTime
+  recurringLastOccurence_lte: DateTime
+  recurringLastOccurence_gt: DateTime
+  recurringLastOccurence_gte: DateTime
+  recurringWeekCadence: Int
+  recurringWeekCadence_not: Int
+  recurringWeekCadence_in: [Int!]
+  recurringWeekCadence_not_in: [Int!]
+  recurringWeekCadence_lt: Int
+  recurringWeekCadence_lte: Int
+  recurringWeekCadence_gt: Int
+  recurringWeekCadence_gte: Int
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  AND: [ChoreWhereInput!]
+  OR: [ChoreWhereInput!]
+  NOT: [ChoreWhereInput!]
+}
+
+input ChoreWhereUniqueInput {
+  id: ID
+}
+
+scalar DateTime
+
+type EffortRating {
+  id: ID!
+  user: User!
+  effort: Int!
+  chore: Chore!
+  updatedAt: DateTime!
+  createdAt: DateTime!
+}
+
+type EffortRatingConnection {
+  pageInfo: PageInfo!
+  edges: [EffortRatingEdge]!
+  aggregate: AggregateEffortRating!
+}
+
+input EffortRatingCreateInput {
+  id: ID
+  user: UserCreateOneInput!
+  effort: Int!
+  chore: ChoreCreateOneWithoutEffortRatingsInput!
+}
+
+input EffortRatingCreateManyWithoutChoreInput {
+  create: [EffortRatingCreateWithoutChoreInput!]
+  connect: [EffortRatingWhereUniqueInput!]
+}
+
+input EffortRatingCreateWithoutChoreInput {
+  id: ID
+  user: UserCreateOneInput!
+  effort: Int!
+}
+
+type EffortRatingEdge {
+  node: EffortRating!
+  cursor: String!
+}
+
+enum EffortRatingOrderByInput {
+  id_ASC
+  id_DESC
+  effort_ASC
+  effort_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type EffortRatingPreviousValues {
+  id: ID!
+  effort: Int!
+  updatedAt: DateTime!
+  createdAt: DateTime!
+}
+
+input EffortRatingScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  effort: Int
+  effort_not: Int
+  effort_in: [Int!]
+  effort_not_in: [Int!]
+  effort_lt: Int
+  effort_lte: Int
+  effort_gt: Int
+  effort_gte: Int
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  AND: [EffortRatingScalarWhereInput!]
+  OR: [EffortRatingScalarWhereInput!]
+  NOT: [EffortRatingScalarWhereInput!]
+}
+
+type EffortRatingSubscriptionPayload {
+  mutation: MutationType!
+  node: EffortRating
+  updatedFields: [String!]
+  previousValues: EffortRatingPreviousValues
+}
+
+input EffortRatingSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: EffortRatingWhereInput
+  AND: [EffortRatingSubscriptionWhereInput!]
+  OR: [EffortRatingSubscriptionWhereInput!]
+  NOT: [EffortRatingSubscriptionWhereInput!]
+}
+
+input EffortRatingUpdateInput {
+  user: UserUpdateOneRequiredInput
+  effort: Int
+  chore: ChoreUpdateOneRequiredWithoutEffortRatingsInput
+}
+
+input EffortRatingUpdateManyDataInput {
+  effort: Int
+}
+
+input EffortRatingUpdateManyMutationInput {
+  effort: Int
+}
+
+input EffortRatingUpdateManyWithoutChoreInput {
+  create: [EffortRatingCreateWithoutChoreInput!]
+  delete: [EffortRatingWhereUniqueInput!]
+  connect: [EffortRatingWhereUniqueInput!]
+  set: [EffortRatingWhereUniqueInput!]
+  disconnect: [EffortRatingWhereUniqueInput!]
+  update: [EffortRatingUpdateWithWhereUniqueWithoutChoreInput!]
+  upsert: [EffortRatingUpsertWithWhereUniqueWithoutChoreInput!]
+  deleteMany: [EffortRatingScalarWhereInput!]
+  updateMany: [EffortRatingUpdateManyWithWhereNestedInput!]
+}
+
+input EffortRatingUpdateManyWithWhereNestedInput {
+  where: EffortRatingScalarWhereInput!
+  data: EffortRatingUpdateManyDataInput!
+}
+
+input EffortRatingUpdateWithoutChoreDataInput {
+  user: UserUpdateOneRequiredInput
+  effort: Int
+}
+
+input EffortRatingUpdateWithWhereUniqueWithoutChoreInput {
+  where: EffortRatingWhereUniqueInput!
+  data: EffortRatingUpdateWithoutChoreDataInput!
+}
+
+input EffortRatingUpsertWithWhereUniqueWithoutChoreInput {
+  where: EffortRatingWhereUniqueInput!
+  update: EffortRatingUpdateWithoutChoreDataInput!
+  create: EffortRatingCreateWithoutChoreInput!
+}
+
+input EffortRatingWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  user: UserWhereInput
+  effort: Int
+  effort_not: Int
+  effort_in: [Int!]
+  effort_not_in: [Int!]
+  effort_lt: Int
+  effort_lte: Int
+  effort_gt: Int
+  effort_gte: Int
+  chore: ChoreWhereInput
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  AND: [EffortRatingWhereInput!]
+  OR: [EffortRatingWhereInput!]
+  NOT: [EffortRatingWhereInput!]
+}
+
+input EffortRatingWhereUniqueInput {
+  id: ID
+}
+
+type Household {
+  id: ID!
+  name: String!
+  members(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
+  chores(where: ChoreWhereInput, orderBy: ChoreOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Chore!]
+  invites(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
+  updatedAt: DateTime!
+  createdAt: DateTime!
+}
+
+type HouseholdConnection {
+  pageInfo: PageInfo!
+  edges: [HouseholdEdge]!
+  aggregate: AggregateHousehold!
+}
+
+input HouseholdCreateInput {
+  id: ID
+  name: String!
+  members: UserCreateManyWithoutHouseholdsInput
+  chores: ChoreCreateManyWithoutHouseholdInput
+  invites: UserCreateManyWithoutInvitesInput
+}
+
+input HouseholdCreateManyWithoutInvitesInput {
+  create: [HouseholdCreateWithoutInvitesInput!]
+  connect: [HouseholdWhereUniqueInput!]
+}
+
+input HouseholdCreateManyWithoutMembersInput {
+  create: [HouseholdCreateWithoutMembersInput!]
+  connect: [HouseholdWhereUniqueInput!]
+}
+
+input HouseholdCreateOneInput {
+  create: HouseholdCreateInput
+  connect: HouseholdWhereUniqueInput
+}
+
+input HouseholdCreateOneWithoutChoresInput {
+  create: HouseholdCreateWithoutChoresInput
+  connect: HouseholdWhereUniqueInput
+}
+
+input HouseholdCreateWithoutChoresInput {
+  id: ID
+  name: String!
+  members: UserCreateManyWithoutHouseholdsInput
+  invites: UserCreateManyWithoutInvitesInput
+}
+
+input HouseholdCreateWithoutInvitesInput {
+  id: ID
+  name: String!
+  members: UserCreateManyWithoutHouseholdsInput
+  chores: ChoreCreateManyWithoutHouseholdInput
+}
+
+input HouseholdCreateWithoutMembersInput {
+  id: ID
+  name: String!
+  chores: ChoreCreateManyWithoutHouseholdInput
+  invites: UserCreateManyWithoutInvitesInput
+}
+
+type HouseholdEdge {
+  node: Household!
+  cursor: String!
+}
+
+enum HouseholdOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type HouseholdPreviousValues {
+  id: ID!
+  name: String!
+  updatedAt: DateTime!
+  createdAt: DateTime!
+}
+
+input HouseholdScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  AND: [HouseholdScalarWhereInput!]
+  OR: [HouseholdScalarWhereInput!]
+  NOT: [HouseholdScalarWhereInput!]
+}
+
+type HouseholdSubscriptionPayload {
+  mutation: MutationType!
+  node: Household
+  updatedFields: [String!]
+  previousValues: HouseholdPreviousValues
+}
+
+input HouseholdSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: HouseholdWhereInput
+  AND: [HouseholdSubscriptionWhereInput!]
+  OR: [HouseholdSubscriptionWhereInput!]
+  NOT: [HouseholdSubscriptionWhereInput!]
+}
+
+input HouseholdUpdateDataInput {
+  name: String
+  members: UserUpdateManyWithoutHouseholdsInput
+  chores: ChoreUpdateManyWithoutHouseholdInput
+  invites: UserUpdateManyWithoutInvitesInput
+}
+
+input HouseholdUpdateInput {
+  name: String
+  members: UserUpdateManyWithoutHouseholdsInput
+  chores: ChoreUpdateManyWithoutHouseholdInput
+  invites: UserUpdateManyWithoutInvitesInput
+}
+
+input HouseholdUpdateManyDataInput {
+  name: String
+}
+
+input HouseholdUpdateManyMutationInput {
+  name: String
+}
+
+input HouseholdUpdateManyWithoutInvitesInput {
+  create: [HouseholdCreateWithoutInvitesInput!]
+  delete: [HouseholdWhereUniqueInput!]
+  connect: [HouseholdWhereUniqueInput!]
+  set: [HouseholdWhereUniqueInput!]
+  disconnect: [HouseholdWhereUniqueInput!]
+  update: [HouseholdUpdateWithWhereUniqueWithoutInvitesInput!]
+  upsert: [HouseholdUpsertWithWhereUniqueWithoutInvitesInput!]
+  deleteMany: [HouseholdScalarWhereInput!]
+  updateMany: [HouseholdUpdateManyWithWhereNestedInput!]
+}
+
+input HouseholdUpdateManyWithoutMembersInput {
+  create: [HouseholdCreateWithoutMembersInput!]
+  delete: [HouseholdWhereUniqueInput!]
+  connect: [HouseholdWhereUniqueInput!]
+  set: [HouseholdWhereUniqueInput!]
+  disconnect: [HouseholdWhereUniqueInput!]
+  update: [HouseholdUpdateWithWhereUniqueWithoutMembersInput!]
+  upsert: [HouseholdUpsertWithWhereUniqueWithoutMembersInput!]
+  deleteMany: [HouseholdScalarWhereInput!]
+  updateMany: [HouseholdUpdateManyWithWhereNestedInput!]
+}
+
+input HouseholdUpdateManyWithWhereNestedInput {
+  where: HouseholdScalarWhereInput!
+  data: HouseholdUpdateManyDataInput!
+}
+
+input HouseholdUpdateOneInput {
+  create: HouseholdCreateInput
+  update: HouseholdUpdateDataInput
+  upsert: HouseholdUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: HouseholdWhereUniqueInput
+}
+
+input HouseholdUpdateOneRequiredWithoutChoresInput {
+  create: HouseholdCreateWithoutChoresInput
+  update: HouseholdUpdateWithoutChoresDataInput
+  upsert: HouseholdUpsertWithoutChoresInput
+  connect: HouseholdWhereUniqueInput
+}
+
+input HouseholdUpdateWithoutChoresDataInput {
+  name: String
+  members: UserUpdateManyWithoutHouseholdsInput
+  invites: UserUpdateManyWithoutInvitesInput
+}
+
+input HouseholdUpdateWithoutInvitesDataInput {
+  name: String
+  members: UserUpdateManyWithoutHouseholdsInput
+  chores: ChoreUpdateManyWithoutHouseholdInput
+}
+
+input HouseholdUpdateWithoutMembersDataInput {
+  name: String
+  chores: ChoreUpdateManyWithoutHouseholdInput
+  invites: UserUpdateManyWithoutInvitesInput
+}
+
+input HouseholdUpdateWithWhereUniqueWithoutInvitesInput {
+  where: HouseholdWhereUniqueInput!
+  data: HouseholdUpdateWithoutInvitesDataInput!
+}
+
+input HouseholdUpdateWithWhereUniqueWithoutMembersInput {
+  where: HouseholdWhereUniqueInput!
+  data: HouseholdUpdateWithoutMembersDataInput!
+}
+
+input HouseholdUpsertNestedInput {
+  update: HouseholdUpdateDataInput!
+  create: HouseholdCreateInput!
+}
+
+input HouseholdUpsertWithoutChoresInput {
+  update: HouseholdUpdateWithoutChoresDataInput!
+  create: HouseholdCreateWithoutChoresInput!
+}
+
+input HouseholdUpsertWithWhereUniqueWithoutInvitesInput {
+  where: HouseholdWhereUniqueInput!
+  update: HouseholdUpdateWithoutInvitesDataInput!
+  create: HouseholdCreateWithoutInvitesInput!
+}
+
+input HouseholdUpsertWithWhereUniqueWithoutMembersInput {
+  where: HouseholdWhereUniqueInput!
+  update: HouseholdUpdateWithoutMembersDataInput!
+  create: HouseholdCreateWithoutMembersInput!
+}
+
+input HouseholdWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  members_every: UserWhereInput
+  members_some: UserWhereInput
+  members_none: UserWhereInput
+  chores_every: ChoreWhereInput
+  chores_some: ChoreWhereInput
+  chores_none: ChoreWhereInput
+  invites_every: UserWhereInput
+  invites_some: UserWhereInput
+  invites_none: UserWhereInput
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  AND: [HouseholdWhereInput!]
+  OR: [HouseholdWhereInput!]
+  NOT: [HouseholdWhereInput!]
+}
+
+input HouseholdWhereUniqueInput {
+  id: ID
+}
+
+scalar Long
+
+type Mutation {
+  createChore(data: ChoreCreateInput!): Chore!
+  updateChore(data: ChoreUpdateInput!, where: ChoreWhereUniqueInput!): Chore
+  updateManyChores(data: ChoreUpdateManyMutationInput!, where: ChoreWhereInput): BatchPayload!
+  upsertChore(where: ChoreWhereUniqueInput!, create: ChoreCreateInput!, update: ChoreUpdateInput!): Chore!
+  deleteChore(where: ChoreWhereUniqueInput!): Chore
+  deleteManyChores(where: ChoreWhereInput): BatchPayload!
+  createEffortRating(data: EffortRatingCreateInput!): EffortRating!
+  updateEffortRating(data: EffortRatingUpdateInput!, where: EffortRatingWhereUniqueInput!): EffortRating
+  updateManyEffortRatings(data: EffortRatingUpdateManyMutationInput!, where: EffortRatingWhereInput): BatchPayload!
+  upsertEffortRating(where: EffortRatingWhereUniqueInput!, create: EffortRatingCreateInput!, update: EffortRatingUpdateInput!): EffortRating!
+  deleteEffortRating(where: EffortRatingWhereUniqueInput!): EffortRating
+  deleteManyEffortRatings(where: EffortRatingWhereInput): BatchPayload!
+  createHousehold(data: HouseholdCreateInput!): Household!
+  updateHousehold(data: HouseholdUpdateInput!, where: HouseholdWhereUniqueInput!): Household
+  updateManyHouseholds(data: HouseholdUpdateManyMutationInput!, where: HouseholdWhereInput): BatchPayload!
+  upsertHousehold(where: HouseholdWhereUniqueInput!, create: HouseholdCreateInput!, update: HouseholdUpdateInput!): Household!
+  deleteHousehold(where: HouseholdWhereUniqueInput!): Household
+  deleteManyHouseholds(where: HouseholdWhereInput): BatchPayload!
+  createUser(data: UserCreateInput!): User!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  deleteUser(where: UserWhereUniqueInput!): User
+  deleteManyUsers(where: UserWhereInput): BatchPayload!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+interface Node {
+  id: ID!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type Query {
+  chore(where: ChoreWhereUniqueInput!): Chore
+  chores(where: ChoreWhereInput, orderBy: ChoreOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Chore]!
+  choresConnection(where: ChoreWhereInput, orderBy: ChoreOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ChoreConnection!
+  effortRating(where: EffortRatingWhereUniqueInput!): EffortRating
+  effortRatings(where: EffortRatingWhereInput, orderBy: EffortRatingOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [EffortRating]!
+  effortRatingsConnection(where: EffortRatingWhereInput, orderBy: EffortRatingOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): EffortRatingConnection!
+  household(where: HouseholdWhereUniqueInput!): Household
+  households(where: HouseholdWhereInput, orderBy: HouseholdOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Household]!
+  householdsConnection(where: HouseholdWhereInput, orderBy: HouseholdOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): HouseholdConnection!
+  user(where: UserWhereUniqueInput!): User
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  node(id: ID!): Node
+}
+
+enum RecurrenceType {
+  AUTOMATIC
+  MANUAL
+  ONCE
+}
+
+type Subscription {
+  chore(where: ChoreSubscriptionWhereInput): ChoreSubscriptionPayload
+  effortRating(where: EffortRatingSubscriptionWhereInput): EffortRatingSubscriptionPayload
+  household(where: HouseholdSubscriptionWhereInput): HouseholdSubscriptionPayload
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+}
+
+enum TodoState {
+  TODO
+  DONE
+  NOT_IN_TODO
+}
+
+type User {
+  id: ID!
+  googleId: String
+  email: String!
+  givenName: String
+  familyName: String
+  name: String!
+  households(where: HouseholdWhereInput, orderBy: HouseholdOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Household!]
+  chores(where: ChoreWhereInput, orderBy: ChoreOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Chore!]
+  selectedHousehold: Household
+  lockedChores(where: ChoreWhereInput, orderBy: ChoreOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Chore!]
+  invites(where: HouseholdWhereInput, orderBy: HouseholdOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Household!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type UserConnection {
+  pageInfo: PageInfo!
+  edges: [UserEdge]!
+  aggregate: AggregateUser!
+}
+
+input UserCreateInput {
+  id: ID
+  googleId: String
+  email: String!
+  givenName: String
+  familyName: String
+  name: String!
+  households: HouseholdCreateManyWithoutMembersInput
+  chores: ChoreCreateManyWithoutAssigneeInput
+  selectedHousehold: HouseholdCreateOneInput
+  lockedChores: ChoreCreateManyWithoutLockedToUserInput
+  invites: HouseholdCreateManyWithoutInvitesInput
+}
+
+input UserCreateManyWithoutHouseholdsInput {
+  create: [UserCreateWithoutHouseholdsInput!]
+  connect: [UserWhereUniqueInput!]
+}
+
+input UserCreateManyWithoutInvitesInput {
+  create: [UserCreateWithoutInvitesInput!]
+  connect: [UserWhereUniqueInput!]
+}
+
+input UserCreateOneInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateOneWithoutChoresInput {
+  create: UserCreateWithoutChoresInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateOneWithoutLockedChoresInput {
+  create: UserCreateWithoutLockedChoresInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateWithoutChoresInput {
+  id: ID
+  googleId: String
+  email: String!
+  givenName: String
+  familyName: String
+  name: String!
+  households: HouseholdCreateManyWithoutMembersInput
+  selectedHousehold: HouseholdCreateOneInput
+  lockedChores: ChoreCreateManyWithoutLockedToUserInput
+  invites: HouseholdCreateManyWithoutInvitesInput
+}
+
+input UserCreateWithoutHouseholdsInput {
+  id: ID
+  googleId: String
+  email: String!
+  givenName: String
+  familyName: String
+  name: String!
+  chores: ChoreCreateManyWithoutAssigneeInput
+  selectedHousehold: HouseholdCreateOneInput
+  lockedChores: ChoreCreateManyWithoutLockedToUserInput
+  invites: HouseholdCreateManyWithoutInvitesInput
+}
+
+input UserCreateWithoutInvitesInput {
+  id: ID
+  googleId: String
+  email: String!
+  givenName: String
+  familyName: String
+  name: String!
+  households: HouseholdCreateManyWithoutMembersInput
+  chores: ChoreCreateManyWithoutAssigneeInput
+  selectedHousehold: HouseholdCreateOneInput
+  lockedChores: ChoreCreateManyWithoutLockedToUserInput
+}
+
+input UserCreateWithoutLockedChoresInput {
+  id: ID
+  googleId: String
+  email: String!
+  givenName: String
+  familyName: String
+  name: String!
+  households: HouseholdCreateManyWithoutMembersInput
+  chores: ChoreCreateManyWithoutAssigneeInput
+  selectedHousehold: HouseholdCreateOneInput
+  invites: HouseholdCreateManyWithoutInvitesInput
+}
+
+type UserEdge {
+  node: User!
+  cursor: String!
+}
+
+enum UserOrderByInput {
+  id_ASC
+  id_DESC
+  googleId_ASC
+  googleId_DESC
+  email_ASC
+  email_DESC
+  givenName_ASC
+  givenName_DESC
+  familyName_ASC
+  familyName_DESC
+  name_ASC
+  name_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type UserPreviousValues {
+  id: ID!
+  googleId: String
+  email: String!
+  givenName: String
+  familyName: String
+  name: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+input UserScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  googleId: String
+  googleId_not: String
+  googleId_in: [String!]
+  googleId_not_in: [String!]
+  googleId_lt: String
+  googleId_lte: String
+  googleId_gt: String
+  googleId_gte: String
+  googleId_contains: String
+  googleId_not_contains: String
+  googleId_starts_with: String
+  googleId_not_starts_with: String
+  googleId_ends_with: String
+  googleId_not_ends_with: String
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  givenName: String
+  givenName_not: String
+  givenName_in: [String!]
+  givenName_not_in: [String!]
+  givenName_lt: String
+  givenName_lte: String
+  givenName_gt: String
+  givenName_gte: String
+  givenName_contains: String
+  givenName_not_contains: String
+  givenName_starts_with: String
+  givenName_not_starts_with: String
+  givenName_ends_with: String
+  givenName_not_ends_with: String
+  familyName: String
+  familyName_not: String
+  familyName_in: [String!]
+  familyName_not_in: [String!]
+  familyName_lt: String
+  familyName_lte: String
+  familyName_gt: String
+  familyName_gte: String
+  familyName_contains: String
+  familyName_not_contains: String
+  familyName_starts_with: String
+  familyName_not_starts_with: String
+  familyName_ends_with: String
+  familyName_not_ends_with: String
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [UserScalarWhereInput!]
+  OR: [UserScalarWhereInput!]
+  NOT: [UserScalarWhereInput!]
+}
+
+type UserSubscriptionPayload {
+  mutation: MutationType!
+  node: User
+  updatedFields: [String!]
+  previousValues: UserPreviousValues
+}
+
+input UserSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: UserWhereInput
+  AND: [UserSubscriptionWhereInput!]
+  OR: [UserSubscriptionWhereInput!]
+  NOT: [UserSubscriptionWhereInput!]
+}
+
+input UserUpdateDataInput {
+  googleId: String
+  email: String
+  givenName: String
+  familyName: String
+  name: String
+  households: HouseholdUpdateManyWithoutMembersInput
+  chores: ChoreUpdateManyWithoutAssigneeInput
+  selectedHousehold: HouseholdUpdateOneInput
+  lockedChores: ChoreUpdateManyWithoutLockedToUserInput
+  invites: HouseholdUpdateManyWithoutInvitesInput
+}
+
+input UserUpdateInput {
+  googleId: String
+  email: String
+  givenName: String
+  familyName: String
+  name: String
+  households: HouseholdUpdateManyWithoutMembersInput
+  chores: ChoreUpdateManyWithoutAssigneeInput
+  selectedHousehold: HouseholdUpdateOneInput
+  lockedChores: ChoreUpdateManyWithoutLockedToUserInput
+  invites: HouseholdUpdateManyWithoutInvitesInput
+}
+
+input UserUpdateManyDataInput {
+  googleId: String
+  email: String
+  givenName: String
+  familyName: String
+  name: String
+}
+
+input UserUpdateManyMutationInput {
+  googleId: String
+  email: String
+  givenName: String
+  familyName: String
+  name: String
+}
+
+input UserUpdateManyWithoutHouseholdsInput {
+  create: [UserCreateWithoutHouseholdsInput!]
+  delete: [UserWhereUniqueInput!]
+  connect: [UserWhereUniqueInput!]
+  set: [UserWhereUniqueInput!]
+  disconnect: [UserWhereUniqueInput!]
+  update: [UserUpdateWithWhereUniqueWithoutHouseholdsInput!]
+  upsert: [UserUpsertWithWhereUniqueWithoutHouseholdsInput!]
+  deleteMany: [UserScalarWhereInput!]
+  updateMany: [UserUpdateManyWithWhereNestedInput!]
+}
+
+input UserUpdateManyWithoutInvitesInput {
+  create: [UserCreateWithoutInvitesInput!]
+  delete: [UserWhereUniqueInput!]
+  connect: [UserWhereUniqueInput!]
+  set: [UserWhereUniqueInput!]
+  disconnect: [UserWhereUniqueInput!]
+  update: [UserUpdateWithWhereUniqueWithoutInvitesInput!]
+  upsert: [UserUpsertWithWhereUniqueWithoutInvitesInput!]
+  deleteMany: [UserScalarWhereInput!]
+  updateMany: [UserUpdateManyWithWhereNestedInput!]
+}
+
+input UserUpdateManyWithWhereNestedInput {
+  where: UserScalarWhereInput!
+  data: UserUpdateManyDataInput!
+}
+
+input UserUpdateOneRequiredInput {
+  create: UserCreateInput
+  update: UserUpdateDataInput
+  upsert: UserUpsertNestedInput
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateOneWithoutChoresInput {
+  create: UserCreateWithoutChoresInput
+  update: UserUpdateWithoutChoresDataInput
+  upsert: UserUpsertWithoutChoresInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateOneWithoutLockedChoresInput {
+  create: UserCreateWithoutLockedChoresInput
+  update: UserUpdateWithoutLockedChoresDataInput
+  upsert: UserUpsertWithoutLockedChoresInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateWithoutChoresDataInput {
+  googleId: String
+  email: String
+  givenName: String
+  familyName: String
+  name: String
+  households: HouseholdUpdateManyWithoutMembersInput
+  selectedHousehold: HouseholdUpdateOneInput
+  lockedChores: ChoreUpdateManyWithoutLockedToUserInput
+  invites: HouseholdUpdateManyWithoutInvitesInput
+}
+
+input UserUpdateWithoutHouseholdsDataInput {
+  googleId: String
+  email: String
+  givenName: String
+  familyName: String
+  name: String
+  chores: ChoreUpdateManyWithoutAssigneeInput
+  selectedHousehold: HouseholdUpdateOneInput
+  lockedChores: ChoreUpdateManyWithoutLockedToUserInput
+  invites: HouseholdUpdateManyWithoutInvitesInput
+}
+
+input UserUpdateWithoutInvitesDataInput {
+  googleId: String
+  email: String
+  givenName: String
+  familyName: String
+  name: String
+  households: HouseholdUpdateManyWithoutMembersInput
+  chores: ChoreUpdateManyWithoutAssigneeInput
+  selectedHousehold: HouseholdUpdateOneInput
+  lockedChores: ChoreUpdateManyWithoutLockedToUserInput
+}
+
+input UserUpdateWithoutLockedChoresDataInput {
+  googleId: String
+  email: String
+  givenName: String
+  familyName: String
+  name: String
+  households: HouseholdUpdateManyWithoutMembersInput
+  chores: ChoreUpdateManyWithoutAssigneeInput
+  selectedHousehold: HouseholdUpdateOneInput
+  invites: HouseholdUpdateManyWithoutInvitesInput
+}
+
+input UserUpdateWithWhereUniqueWithoutHouseholdsInput {
+  where: UserWhereUniqueInput!
+  data: UserUpdateWithoutHouseholdsDataInput!
+}
+
+input UserUpdateWithWhereUniqueWithoutInvitesInput {
+  where: UserWhereUniqueInput!
+  data: UserUpdateWithoutInvitesDataInput!
+}
+
+input UserUpsertNestedInput {
+  update: UserUpdateDataInput!
+  create: UserCreateInput!
+}
+
+input UserUpsertWithoutChoresInput {
+  update: UserUpdateWithoutChoresDataInput!
+  create: UserCreateWithoutChoresInput!
+}
+
+input UserUpsertWithoutLockedChoresInput {
+  update: UserUpdateWithoutLockedChoresDataInput!
+  create: UserCreateWithoutLockedChoresInput!
+}
+
+input UserUpsertWithWhereUniqueWithoutHouseholdsInput {
+  where: UserWhereUniqueInput!
+  update: UserUpdateWithoutHouseholdsDataInput!
+  create: UserCreateWithoutHouseholdsInput!
+}
+
+input UserUpsertWithWhereUniqueWithoutInvitesInput {
+  where: UserWhereUniqueInput!
+  update: UserUpdateWithoutInvitesDataInput!
+  create: UserCreateWithoutInvitesInput!
+}
+
+input UserWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  googleId: String
+  googleId_not: String
+  googleId_in: [String!]
+  googleId_not_in: [String!]
+  googleId_lt: String
+  googleId_lte: String
+  googleId_gt: String
+  googleId_gte: String
+  googleId_contains: String
+  googleId_not_contains: String
+  googleId_starts_with: String
+  googleId_not_starts_with: String
+  googleId_ends_with: String
+  googleId_not_ends_with: String
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  givenName: String
+  givenName_not: String
+  givenName_in: [String!]
+  givenName_not_in: [String!]
+  givenName_lt: String
+  givenName_lte: String
+  givenName_gt: String
+  givenName_gte: String
+  givenName_contains: String
+  givenName_not_contains: String
+  givenName_starts_with: String
+  givenName_not_starts_with: String
+  givenName_ends_with: String
+  givenName_not_ends_with: String
+  familyName: String
+  familyName_not: String
+  familyName_in: [String!]
+  familyName_not_in: [String!]
+  familyName_lt: String
+  familyName_lte: String
+  familyName_gt: String
+  familyName_gte: String
+  familyName_contains: String
+  familyName_not_contains: String
+  familyName_starts_with: String
+  familyName_not_starts_with: String
+  familyName_ends_with: String
+  familyName_not_ends_with: String
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  households_every: HouseholdWhereInput
+  households_some: HouseholdWhereInput
+  households_none: HouseholdWhereInput
+  chores_every: ChoreWhereInput
+  chores_some: ChoreWhereInput
+  chores_none: ChoreWhereInput
+  selectedHousehold: HouseholdWhereInput
+  lockedChores_every: ChoreWhereInput
+  lockedChores_some: ChoreWhereInput
+  lockedChores_none: ChoreWhereInput
+  invites_every: HouseholdWhereInput
+  invites_some: HouseholdWhereInput
+  invites_none: HouseholdWhereInput
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  NOT: [UserWhereInput!]
+}
+
+input UserWhereUniqueInput {
+  id: ID
+  googleId: String
+  email: String
+}

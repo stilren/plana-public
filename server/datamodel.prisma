@@ -1,0 +1,65 @@
+type User {
+  id: ID! @id
+  googleId: String @unique
+  email: String! @unique
+  givenName: String
+  familyName: String
+  name: String!
+  households: [Household] @relation(name: "HouseholdToUser")
+  chores: [Chore] @relation(name: "UserToChores")
+  selectedHousehold: Household @relation(name: "UserToSelectedHousehold")
+  lockedChores: [Chore] @relation(name: "UserToLockedChores")
+  invites: [Household] @relation(name: "HouseholdToInvites")
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Household {
+  id: ID! @id
+  name: String!
+  members: [User!]! @relation(name: "HouseholdToUser")
+  chores: [Chore] @relation(name: "HouseholdToChores")
+  invites: [User] @relation(name: "HouseholdToInvites")
+  updatedAt: DateTime! @updatedAt
+  createdAt: DateTime! @createdAt
+}
+
+type Chore {
+  id: ID! @id
+  name: String!
+  description: String
+  effortRatings: [EffortRating]
+  household: Household! @relation(name: "HouseholdToChores")
+  assignee: User @relation(name: "UserToChores")
+  lockedToUser: User @relation(name: "UserToLockedChores")
+  todoState: TodoState!
+  dummy: String ##hack to fix relation subscriptions (https://github.com/prisma/prisma/issues/146)
+  isUpnext: Boolean!
+  recurrenceType: RecurrenceType!
+  recurringNextOccurence: DateTime
+  recurringLastOccurence: DateTime
+  recurringWeekCadence: Int
+  updatedAt: DateTime! @updatedAt
+  createdAt: DateTime! @createdAt
+}
+
+type EffortRating {
+  id: ID! @id
+  user: User!
+  effort: Int!
+  chore: Chore!
+  updatedAt: DateTime! @updatedAt
+  createdAt: DateTime! @createdAt
+}
+
+enum RecurrenceType {
+  AUTOMATIC
+  MANUAL
+  ONCE
+}
+
+enum TodoState {
+  TODO
+  DONE
+  NOT_IN_TODO
+}

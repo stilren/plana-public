@@ -1,0 +1,3 @@
+dotnet publish -c Release
+cd bin/release/notcore2.2/publish
+gcloud app deploy

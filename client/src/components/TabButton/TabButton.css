@@ -1,0 +1,21 @@
+.tabButton {
+  height: 100% !important;
+}
+
+.tabButtonWrapper {
+  height: 100% !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.tabIcon {
+  height: 22px;
+  width: 22px;
+}
+
+.tabLabel {
+  font-size: 11px;
+  text-transform: capitalize;
+}

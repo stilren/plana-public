@@ -1,0 +1,358 @@
+{
+  "chores": [
+    {
+      "choreId": "0",
+      "effortRatings": [
+        {
+          "userId": "Tabetha",
+          "effort": 2
+        },
+        {
+          "userId": "Randee",
+          "effort": 3
+        },
+        {
+          "userId": "Natalya",
+          "effort": 1
+        }
+      ]
+    },
+    {
+      "choreId": "1",
+      "effortRatings": [
+        {
+          "userId": "Tabetha",
+          "effort": 3
+        },
+        {
+          "userId": "Randee",
+          "effort": 1
+        },
+        {
+          "userId": "Natalya",
+          "effort": 3
+        }
+      ]
+    },
+    {
+      "choreId": "2",
+      "effortRatings": [
+        {
+          "userId": "Tabetha",
+          "effort": 1
+        },
+        {
+          "userId": "Randee",
+          "effort": 3
+        },
+        {
+          "userId": "Natalya",
+          "effort": 3
+        }
+      ]
+    },
+    {
+      "choreId": "3",
+      "effortRatings": [
+        {
+          "userId": "Tabetha",
+          "effort": 2
+        },
+        {
+          "userId": "Randee",
+          "effort": 1
+        },
+        {
+          "userId": "Natalya",
+          "effort": 2
+        }
+      ]
+    },
+    {
+      "choreId": "4",
+      "effortRatings": [
+        {
+          "userId": "Tabetha",
+          "effort": 1
+        },
+        {
+          "userId": "Randee",
+          "effort": 2
+        },
+        {
+          "userId": "Natalya",
+          "effort": 3
+        }
+      ]
+    },
+    {
+      "choreId": "5",
+      "effortRatings": [
+        {
+          "userId": "Tabetha",
+          "effort": 1
+        },
+        {
+          "userId": "Randee",
+          "effort": 1
+        },
+        {
+          "userId": "Natalya",
+          "effort": 2
+        }
+      ]
+    },
+    {
+      "choreId": "6",
+      "effortRatings": [
+        {
+          "userId": "Tabetha",
+          "effort": 2
+        },
+        {
+          "userId": "Randee",
+          "effort": 2
+        },
+        {
+          "userId": "Natalya",
+          "effort": 2
+        }
+      ]
+    },
+    {
+      "choreId": "7",
+      "effortRatings": [
+        {
+          "userId": "Tabetha",
+          "effort": 1
+        },
+        {
+          "userId": "Randee",
+          "effort": 3
+        },
+        {
+          "userId": "Natalya",
+          "effort": 3
+        }
+      ]
+    },
+    {
+      "choreId": "8",
+      "effortRatings": [
+        {
+          "userId": "Tabetha",
+          "effort": 1
+        },
+        {
+          "userId": "Randee",
+          "effort": 1
+        },
+        {
+          "userId": "Natalya",
+          "effort": 2
+        }
+      ]
+    },
+    {
+      "choreId": "9",
+      "effortRatings": [
+        {
+          "userId": "Tabetha",
+          "effort": 2
+        },
+        {
+          "userId": "Randee",
+          "effort": 1
+        },
+        {
+          "userId": "Natalya",
+          "effort": 1
+        }
+      ]
+    },
+    {
+      "choreId": "10",
+      "effortRatings": [
+        {
+          "userId": "Tabetha",
+          "effort": 1
+        },
+        {
+          "userId": "Randee",
+          "effort": 3
+        },
+        {
+          "userId": "Natalya",
+          "effort": 3
+        }
+      ]
+    },
+    {
+      "choreId": "11",
+      "effortRatings": [
+        {
+          "userId": "Tabetha",
+          "effort": 1
+        },
+        {
+          "userId": "Randee",
+          "effort": 1
+        },
+        {
+          "userId": "Natalya",
+          "effort": 3
+        }
+      ]
+    },
+    {
+      "choreId": "12",
+      "effortRatings": [
+        {
+          "userId": "Tabetha",
+          "effort": 3
+        },
+        {
+          "userId": "Randee",
+          "effort": 2
+        },
+        {
+          "userId": "Natalya",
+          "effort": 2
+        }
+      ]
+    },
+    {
+      "choreId": "13",
+      "effortRatings": [
+        {
+          "userId": "Tabetha",
+          "effort": 1
+        },
+        {
+          "userId": "Randee",
+          "effort": 3
+        },
+        {
+          "userId": "Natalya",
+          "effort": 1
+        }
+      ]
+    },
+    {
+      "choreId": "14",
+      "effortRatings": [
+        {
+          "userId": "Tabetha",
+          "effort": 2
+        },
+        {
+          "userId": "Randee",
+          "effort": 3
+        },
+        {
+          "userId": "Natalya",
+          "effort": 1
+        }
+      ]
+    },
+    {
+      "choreId": "15",
+      "effortRatings": [
+        {
+          "userId": "Tabetha",
+          "effort": 3
+        },
+        {
+          "userId": "Randee",
+          "effort": 1
+        },
+        {
+          "userId": "Natalya",
+          "effort": 3
+        }
+      ]
+    },
+    {
+      "choreId": "16",
+      "effortRatings": [
+        {
+          "userId": "Tabetha",
+          "effort": 2
+        },
+        {
+          "userId": "Randee",
+          "effort": 2
+        },
+        {
+          "userId": "Natalya",
+          "effort": 3
+        }
+      ]
+    },
+    {
+      "choreId": "17",
+      "effortRatings": [
+        {
+          "userId": "Tabetha",
+          "effort": 3
+        },
+        {
+          "userId": "Randee",
+          "effort": 1
+        },
+        {
+          "userId": "Natalya",
+          "effort": 3
+        }
+      ]
+    },
+    {
+      "choreId": "18",
+      "effortRatings": [
+        {
+          "userId": "Tabetha",
+          "effort": 1
+        },
+        {
+          "userId": "Randee",
+          "effort": 1
+        },
+        {
+          "userId": "Natalya",
+          "effort": 1
+        }
+      ]
+    },
+    {
+      "choreId": "19",
+      "effortRatings": [
+        {
+          "userId": "Tabetha",
+          "effort": 2
+        },
+        {
+          "userId": "Randee",
+          "effort": 2
+        },
+        {
+          "userId": "Natalya",
+          "effort": 3
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "userId": "Tabetha",
+      "shareOfChoresPercent": 0.333333
+    },
+    {
+      "userId": "Randee",
+      "shareOfChoresPercent": 0.333333
+    },
+    {
+      "userId": "Natalya",
+      "shareOfChoresPercent": 0.333333
+    }
+  ]
+}

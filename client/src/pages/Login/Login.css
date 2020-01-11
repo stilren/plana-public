@@ -1,0 +1,16 @@
+.login-outer{
+    display: flex;   
+    flex-direction: column;  
+    justify-content: center; 
+    align-items: center;   
+    height: 100%;
+}
+
+.login-logo {
+    width: 70%
+}
+
+.ghost {
+    border-radius: 10px;
+    width: 50%;
+}

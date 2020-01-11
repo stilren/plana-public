@@ -1,0 +1,9 @@
+.my-custom-modal-css .modal-wrapper {
+  height: 95%;
+  width: 95%;
+  border-radius: 5px;
+}
+
+.my-custom-modal-css .modal-wrapper .ion-page {
+  padding: 10px;
+}

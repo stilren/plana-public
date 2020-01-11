@@ -1,0 +1,60 @@
+se till att .env i /server har rätt innehåll
+se till att ha gjort prisma deploy mot /prod/test (fukade upp namnet på prod-datat...)
+
+för alla projekt som uppdaterats:
+docker build stilrenw/planaclient:latest .
+docker push stilrenw/planaclient:latest
+
+i compute engine console
+cd plana/docker-compose/prod
+docker-compose pull
+docker-compose down
+docker-compose up
+det kan ta lite tid innan clienten kommer upp.
+
+______________________________________
+
+
+
+om docker-compose kommando ej fungerar är det för vi inte har alias satt.
+https://cloud.google.com/community/tutorials/docker-compose-on-container-optimized-os
+
+Download and run the Docker Compose image. Check the tags for Docker Compose to use the latest version.
+
+docker run docker/compose:1.24.0 version
+Ensure that your location is a writable directory.
+
+Many directories are mounted as read-only in the Container-Optimized OS. Change to a writable directory such as your home directory.
+
+$ pwd
+/home/username/dockercloud-hello-world
+Run the Docker Compose command to run the sample code.
+
+So that the Docker Compose container has access to the Docker daemon, mount the Docker socket with the -v /var/run/docker.sock:/var/run/docker.sock option.
+
+To make the current directory available to the container, use the -v "$PWD:$PWD" option to mount it as a volume and the -w="$PWD" to change the working directory.
+
+docker run --rm \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -v "$PWD:$PWD" \
+    -w="$PWD" \
+    docker/compose:1.24.0 up
+With the docker run command still running, open the Google Cloud Platform Console instances page. Click the link to your instance's External IP address.
+
+You should see a "Hello World" message appear.
+
+With the SSH window open, press Control-C on your keyboard to stop the sample application.
+
+Making an alias to Docker Compose
+The docker run ... docker/compose:1.24.0 up command is equivalent to running the docker-compose up command on systems where Docker Compose is installed by the usual method. So that you don't have to remember or type this long command, create an alias for it.
+
+Add a docker-compose alias to your shell configuration file, e.g. .bashrc.
+
+echo alias docker-compose="'"'docker run --rm \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -v "$PWD:$PWD" \
+    -w="$PWD" \
+    docker/compose:1.24.0'"'" >> ~/.bashrc
+Reload the Bash configuration.
+
+source ~/.bashrc
